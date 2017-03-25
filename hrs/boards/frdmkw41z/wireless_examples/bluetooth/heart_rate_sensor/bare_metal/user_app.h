@@ -8,6 +8,9 @@
 
 #define LOAD_FUN_ADDR 0x2001
 
+#define USER_APP_READY     0x55
+#define USER_APP_NONE      0
+
 typedef struct _COMM_DATA
 {
     uint8_t *send_buf;
@@ -23,6 +26,7 @@ typedef void    (*p_TPM0_interrupt_t)(void);
 typedef void    (*p_I2C0_interrupt_t)(void);
 typedef void    (*p_I2C1_interrupt_t)(void);
 typedef void    (*p_ADC_interrupt_t)(void);
+typedef void    (*p_LPTMR0_interrupt_t)(void);
 
 
 struct STRU_PIF
@@ -34,6 +38,7 @@ struct STRU_PIF
     p_I2C0_interrupt_t          p_interrupt_i2c0;
     p_I2C1_interrupt_t          p_interrupt_i2c1;
     p_ADC_interrupt_t           p_interrupt_adc;
+	p_ADC_interrupt_t           p_interrupt_lptmr0;
 };
 
 typedef void    (*p_pif_load_t)(struct STRU_PIF * p);

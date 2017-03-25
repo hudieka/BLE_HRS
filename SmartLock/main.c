@@ -87,6 +87,7 @@ void pif_load(struct STRU_PIF * p)
   p->p_interrupt_i2c0     =  i2c0_irq;
   p->p_interrupt_i2c1     =  i2c1_irq;
   p->p_interrupt_adc      =  adc_irq;
+  p->p_interrupt_lptmr0	  =  lptmr0_irq;
   
   user_adc16_init();
   user_lpuart_init();
@@ -94,7 +95,7 @@ void pif_load(struct STRU_PIF * p)
   return;
 }
 
-//这里5ms会调用一次，相当于主循环任务，buf为蓝牙接收到的数据，len为长度，如果长度为0表示没有新的数据
+//这里是主循环任务，buf为蓝牙接收到的数据，len为长度，如果长度为0表示没有新的数据
 static void user_main(BlueData * commdata)
 {
   INSERT_NOP();

@@ -17,7 +17,6 @@ p_pif_load_t load;
 BlueData g_BDbuf;
 
 static uint8_t g_u8BLE_recv[USER_GETMAX];
-
 static uint8_t g_u8BLE_send[USER_GETMAX];
 
 
@@ -99,6 +98,10 @@ void user_isr(uint8_t flag)
       pif.p_interrupt_adc();
       break;
     }
+	case 6:
+	{
+	  pif.p_interrupt_lptmr0();
+	}
   }
 }
 

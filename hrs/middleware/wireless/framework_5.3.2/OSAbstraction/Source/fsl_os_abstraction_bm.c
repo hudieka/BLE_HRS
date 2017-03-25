@@ -43,6 +43,7 @@
 #include "fsl_common.h"
 #include <string.h>
 #include "GenericList.h"
+#include "user_app.h"
 
 /*! *********************************************************************************
 *************************************************************************************
@@ -1435,6 +1436,8 @@ osaStatus_t OSA_Init(void)
     return osaStatus_Success;
 }
 
+extern uint8_t g_u8AppFlag;
+
 /*FUNCTION**********************************************************************
  *
  * Function Name : OSA_Start
@@ -1461,6 +1464,11 @@ void OSA_Start(void)
         {
             g_curTask = g_curTask->next;
         }
+		if(g_u8AppFlag == USER_APP_READY)
+    	{
+      		//Call User Code
+      		user_run(); 
+    	}
     }
 #else
     for(;;)

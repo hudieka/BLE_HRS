@@ -30,3 +30,8 @@ void adc_irq()
     INSERT_NOP();
     DEMO_ADC16_IRQ_HANDLER_FUNC();
 }
+
+void lptmr0_irq()
+{
+    INSERT_NOP();
+}

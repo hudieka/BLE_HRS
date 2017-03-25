@@ -150,10 +150,7 @@ static void BatteryMeasurementTimerCallback (void *);
 static void BleApp_Advertise(void);
 
 //yangliang add
-#define USER_APP_READY     0x55
-#define USER_APP_NONE      0
-static uint8_t g_u8AppFlag = USER_APP_NONE;
-
+uint8_t g_u8AppFlag = USER_APP_NONE;
 extern BlueData g_BDbuf;
 
 
@@ -221,15 +218,14 @@ void ADC0_IRQHandler(void)
 
 void LPTMR0_IRQHandler(void)
 {
+
     if(g_u8AppFlag == USER_APP_READY)
     {
-      //OSA_DisableIRQGlobal();
-      //Call User Code
-      user_run(); 
-      //OSA_EnableIRQGlobal();
+      user_isr(6); 
     }
+
     //Clear Flag
-    LPTMR_ClearStatusFlags(LPTMR0, kLPTMR_TimerCompareFlag);
+    //LPTMR_ClearStatusFlags(LPTMR0, kLPTMR_TimerCompareFlag);
 }
 
 
